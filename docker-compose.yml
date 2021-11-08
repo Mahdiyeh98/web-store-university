@@ -1,0 +1,20 @@
+version: '3.1'
+services:
+  app:
+    container_name: bookstore
+    image: bookstore
+    build: ./
+    ports:
+      - "80:80"
+    depends_on:
+      - mydb
+  mydb:
+    image: postgres
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=mehdi1377
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=mydb
